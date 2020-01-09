@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="420f0c752dc9415fb9f99fc9a9574b70" Name="Diagram1">
+        <EntityTypeShape EntityType="PokeBankModel.a_ability" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.acc_account" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.dc_damageClass" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.i_item" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.m_move" Width="1.5" PointX="7.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.me_moveEffect" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.n_nature" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.p_pokemon" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.s_stat" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.t_type" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.te_team" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.te_typeEfficiacy" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PokeBankModel.tp_teampokemon" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="PokeBankModel.fk_tp_teampokemon_a_ability1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_te_team_acc_account1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_m_moves_dc_damageClass1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_tp_teampokemon_i_item1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_m_moves_me_moveEffect1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_m_moves_t_type1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_tp_teampokemon_n_natures1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_s_stat_p_pokemon" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_tp_teampokemon_p_pokemon1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_te_typeEfficiacy_t_type1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_te_typeEfficiacy_t_type2" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.fk_tp_teampokemon_te_team1" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.a_ability_has_p_pokemon" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.p_pokemon_has_m_move" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.p_pokemon_has_t_type" ManuallyRouted="false" />
+        <AssociationConnector Association="PokeBankModel.tp_teampokemon_has_m_move" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<PokeBuilder_Auxilium.Models.p_pokemon>
+
+@{
+    ViewBag.Title = "Index";
+}
+	<h5>Pokemon</h5>
+    @*Ajax Form welches den Controller Filter aufruft und die zurückgegebene PartialView in den Table Data Bereich reinlädt*@
+	@using (Ajax.BeginForm("Filter", "pokedex", new { sort = ViewBag.sort, last = "" }, new AjaxOptions
+	{
+		HttpMethod = "GET",
+		UpdateTargetId = "tabledata",
+		InsertionMode = InsertionMode.Replace,
+		LoadingElementId = "load"
+	}, new { @id = "filterForms" }))
+	{
+		<input style="margin-top:2.5vh;margin-bottom:2.5vh" name="filter" type="text" />
+		<input id="filter" style="margin-top:2.5vh;margin-bottom:2.5vh" value="Filter" type="submit" />
+		<img id="load" style="width:4vw;display:none" src="~/img/GreatBall.gif" />
+	}
+		@{String fText = ViewBag.filter;
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+                        @*Verlinkung welche den Controller Filter aufruft und die Daten im Table Data Bereich nach der Pokedex Nr. sortiert*@
+						@Ajax.ActionLink("Pokedex Nr.", "Filter", new { filter = fText }, new AjaxOptions
+				   {
+					   HttpMethod = "GET",
+					   UpdateTargetId = "tabledata",
+					   InsertionMode = InsertionMode.Replace,
+					   OnBegin = "changeBlue",
+					   OnSuccess = "changeNormal",
+					   OnComplete = "changeArrow(0)",
+					   LoadingElementId = "load"
+				   }, new { @class = "ajaxArrow", @id = "OrderByID" })
+					</th>
+					<th>                        
+                        @*Verlinkung welche den Controller Filter aufruft und die Daten im Table Data Bereich nach dem Namen sortiert*@
+						@Ajax.ActionLink("Name", "Filter", new { sort = "OrderByName", filter = fText }, new AjaxOptions
+				   {
+					   HttpMethod = "GET",
+					   UpdateTargetId = "tabledata",
+					   InsertionMode = InsertionMode.Replace,
+					   OnBegin = "changeBlue",
+					   OnSuccess = "changeNormal",
+					   OnComplete = "changeArrow(1)",
+					   LoadingElementId = "load"
+				   }, new { @class = "ajaxArrow", @id = "OrderByName" })
+					</th>
+					<th>
+						<span class="normal">Type</span>
+					</th>
+                    
+                        @*Verlinkung welche den Controller Filter aufruft und die Daten im Table Data Bereich nach dem Tier sortiert*@
+					<th>
+						@Ajax.ActionLink("Tier.", "Filter", new { sort = "OrderByTier", filter = fText }, new AjaxOptions
+				   {
+					   HttpMethod = "GET",
+					   UpdateTargetId = "tabledata",
+					   InsertionMode = InsertionMode.Replace,
+					   OnBegin = "changeBlue",
+					   OnSuccess = "changeNormal",
+					   OnComplete = "changeArrow(2)",
+					   LoadingElementId = "load"
+				   }, new { @class = "ajaxArrow", @id = "OrderByTier" })
+					</th>
+                    @*Verlinkung welche den Controller Filter aufruft und die Daten im Table Data Bereich nach logischen Nummer sortiert*@
+					<th>
+						@Ajax.ActionLink("Logical Nr.", "Filter", new { sort = "OrderByIntNr", filter = fText }, new AjaxOptions
+				   {
+					   HttpMethod = "GET",
+					   UpdateTargetId = "tabledata",
+					   InsertionMode = InsertionMode.Replace,
+					   OnBegin = "changeBlue",
+					   OnSuccess = "changeNormal",
+					   OnComplete = "changeArrow(3)",
+					   LoadingElementId = "load"
+				   }, new { @class = "ajaxArrow", @id = "OrderByIntNr" })
+					</th>
+					<th>
+						<p style="font-size:0.7vw; color:black">(Click to Sort)</p>
+					</th>
+				</tr>
+			</thead>
+            @*Dieser Teil wir mit Daten befüllt*@
+			<tbody id="tabledata">
+                @*Lädt die HTML _Pokemone hinein welche die Pokemon Daten beinhaltet*@
+				@Html.Partial("_Pokemon")
+			</tbody>
+		</table>
+	}

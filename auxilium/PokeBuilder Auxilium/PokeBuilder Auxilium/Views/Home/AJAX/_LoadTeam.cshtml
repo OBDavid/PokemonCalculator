@@ -1,0 +1,27 @@
+﻿@model List<PokeBuilder_Auxilium.Models.te_team>
+
+@foreach (var team in Model)
+{
+    <span>
+        &nbsp  &nbsp &nbsp
+    </span>
+    @Ajax.ActionLink(team.te_name, "LoadTeam", new { teamID = team.te_Id }, new AjaxOptions
+    {
+        HttpMethod = "GET",
+        UpdateTargetId = "TeampokemonContainer",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "makeRed(" + team.te_Id + ")",
+        LoadingElementId = "load"
+    }, new { @class = "teamnameLine", @id = team.te_Id })
+}
+
+<script>
+    function makeRed(tid) {
+        var elements = document.getElementsByClassName("teamnameLine");
+        Array.prototype.forEach.call(elements, function (item) {
+            item.style.color = "#1C6AC3"
+        })
+
+        document.getElementById(tid).style.color = "#BC0807";
+    }
+</script>

@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Error404";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Random r = new Random();
+}
+<div>
+    @using (var db = new PokeBuilder_Auxilium.Models.PokeBankEntities())
+    {
+        <h2 style="text-align:center;font-size:7vw">Error 404</h2>
+        <br />
+        <h6 style="text-align:center;">File Not Found</h6>
+        <a href="/Pokedex/ID/@(r.Next(db.p_pokemon.Where(p=>p.p_Id>0&&p.p_Id<10000).Count())-1)"><img style="margin-bottom:7vh;margin-top:10vh;margin-left:18vw;text-align:center;height:25vw" src="~/img/Missingno.png" /></a>
+    }
+    </div>

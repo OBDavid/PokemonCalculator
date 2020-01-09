@@ -1,0 +1,3 @@
+﻿Blau:#1C6AC3
+Rot:#BC0807
+Dunkelrot(hover):#7c0404

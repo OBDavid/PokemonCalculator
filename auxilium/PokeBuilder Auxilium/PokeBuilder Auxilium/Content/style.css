@@ -1,0 +1,331 @@
+﻿body {
+    font-family: Bahnschrift ;
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
+html {
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+}
+
+.small {
+    font-size: 0.6vw;
+    margin-bottom: 0;
+    margin-top: 3px;
+    color: #697e9b;
+}
+a {
+    font-size: 1vw;
+    font-family: Bahnschrift;
+}
+
+    a:hover {
+        text-decoration: none;
+        cursor:pointer;
+    }
+
+th {
+    font-size: 1.2vw;
+    color: #BC0807;
+    font-family: Bahnschrift;
+}
+.thClone {
+    font-size: 1.2vw;
+    color: #BC0807;
+    font-family: Bahnschrift;
+}
+.thCloneSmall {
+    font-size: 0.9vw;
+    color: #BC0807;
+    font-family: Bahnschrift;
+}
+
+tr {
+    font-size: 1vw;
+    font-family: Bahnschrift ;
+}
+
+h1 {
+    font-size: 1.25vw;
+    color: #BC0807;
+    font-family: Bahnschrift ;
+}
+
+h2 {
+    font-size: 1.5vw;
+    color: #BC0807;
+    font-family: Bahnschrift ;
+}
+
+h3 {
+    font-size: 1.75vw;
+    color: #BC0807;
+    font-family: Bahnschrift ;
+}
+
+h4 {
+    font-size: 2vw;
+    color: #BC0807;
+    font-family: Bahnschrift ;
+}
+
+h5 {
+    font-size: 2.25vw;
+    color: #1C6AC3;
+    font-family: Bahnschrift ;
+}
+
+h6 {
+    font-size: 2.5vw;
+    color: #BC0807;
+    font-family: Bahnschrift;
+}
+
+nav a {
+    font-size: 2vw;
+    color: snow;
+    font-weight: 700;
+    margin-left: 1vw;
+}
+
+#first {
+    margin-left: 0;
+}
+
+nav a:hover {
+    color: #1C6AC3;
+    text-decoration: none;
+}
+
+nav a:active {
+    color: #BC0807;
+}
+
+nav a:link {
+    color: none;
+    text-decoration: none;
+}
+
+nav div {
+    padding-bottom: 3vh;
+    margin-bottom: 2vh;
+}
+
+nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 15%;
+    height: 100vh;
+    padding: 10px;
+    background-image: url("../img/menutexture.jpg");
+    /*background-size:220%;
+    background-position-x:center;*/
+}
+
+.logo {
+    width: 100%;
+}
+
+.content {
+    margin-left: 17%;
+    margin-top: 3vh;
+}
+
+.container {
+    margin: 0;
+}
+
+
+iframe.showdown {
+    width: 78vw;
+    height:85vh;
+}
+a.showdown {
+    position: absolute;
+    left: 22vw;
+    top:4vh;
+    font-size:1vw;
+}
+span.showdown {
+    position: absolute;
+    left: 18vw;
+    top: 4vh;
+    font-size: 1vw;
+}
+
+html {
+    width: 100%;
+}
+
+.teams select {
+    min-width: 15vw;
+    min-height: 3vh;
+    font-size: 1.5vw;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background: none;
+    overflow: hidden;
+    -webkit-appearance: none;
+    -moz-appearance:none;
+    z-index: 10;
+    border-bottom: solid;
+    border-bottom-color: #BC0807 ;
+}
+.teams {
+    display:inline-block;
+    margin-top:2vh;
+    margin-left:3vw;
+}
+.teams img{
+    top:-0.5vh;
+    right:2.5vw;
+    width:2vw;
+    position:relative;
+    z-index:-1;
+}
+
+.marginbot{
+    margin-bottom:3vh;
+}
+.marginri {
+    margin-right: 6vw;
+}
+thead a {
+    color: #BC0807;
+}
+thead a:hover {
+    color: #7c0404;
+}
+thead a:focus {
+    color: inherit;
+    text-decoration: inherit;
+}
+thead a:focus:hover {
+    color: #7c0404;
+}
+
+#stats th {
+    font-size: 0.8vw;
+    text-align: center;
+    padding-top: 0;
+    
+}
+#stats th.columnborder {
+    border-right-style: solid;
+    border-right-width: 0.15vw;
+    border-right-color: #dddddd;
+}
+#statValues td.columnborder {
+    border-right-style: solid;
+    border-right-width: 0.15vw;
+    border-right-color: #dddddd;
+}
+#statValues td {
+    text-align: center;
+}
+.ajaxArrow img {
+    width:1vw;
+    margin-left:0.2vw;
+}
+.normal {
+    font-size: 1vw;
+    font-family: Bahnschrift;
+    color:#000000;
+}
+
+.hoverlogin:hover {
+    color: #BC0807;
+    text-decoration:none;
+    background-color:transparent!important;
+}
+.hoverlogin:active {
+    color: #BC0807;
+    text-decoration: none;
+    background-color: transparent !important;
+}
+.hoverlogin{
+    margin:1vw;
+    padding:0!important;
+}
+#typePadding tr {
+    margin: 2.5vh, 1vw, 0, 1vw;
+}
+#typePadding tr td {
+    text-align:center;
+}
+
+#showPassword:hover{
+    visibility: visible;
+}
+#showPassword {
+    visibility: hidden;
+}
+#hidePassword:hover {
+    visibility: hidden;
+}
+#typePadding tr td{
+    border:thin;
+}
+
+input[type=submit] {
+    margin: 1vw;
+    cursor: pointer;
+    -webkit-appearance: initial;
+    box-sizing: inherit;
+    user-select: initial;
+    white-space: initial;
+    align-items: initial;
+    text-align: initial;
+    background-color: initial;
+    padding: initial;
+    border-width: initial;
+    border-style: initial;
+    border-image: initial;
+
+    font-size: 1vw;
+    line-height:20px;
+    color: #1C6AC3;
+}
+input[type=submit]:hover
+{
+  color:#BC0807;
+}
+
+.nohover:hover {
+    color: #BC0807;
+    background-color: transparent !important;
+}
+
+.add {
+    font-size: 1vw;
+    color: #1C6AC3;
+    border: solid;
+    border-radius: 4px;
+    border-width: 1px;
+    padding: 0.5vw;
+    background-color: lightcyan;
+}
+
+.add:hover {
+    color: #BC0807;
+}
+
+.teamnameLine:focus{
+    text-decoration:none
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+}
+
+.CalcList{
+    font-size:0.9vw;
+    max-width:20%;
+}

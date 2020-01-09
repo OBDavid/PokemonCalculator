@@ -1,0 +1,75 @@
+﻿@model PokeBuilder_Auxilium.Models.AllData.AllDataModel
+
+
+<h2 style="margin-left:13vw">Add  Pokemon  to  @((from a in Model.teams where a.te_Id == ViewBag.teamID select a).First().te_name) </h2>
+
+
+@using (Html.BeginForm("AddTeampokemon", "tp_teampokemon", null, FormMethod.Post, new { @style = "margin-left:15vw;margin-top:9vh" }))
+{
+
+    <input style="margin-left:2vw;" type="number" step="1" min="0" max="100" name="tp_Level" placeholder="Level" />
+    <input type="text" name="tp_nickname" placeholder="Custom Name" />
+    <br />
+    <br />
+    <select style="float:left" class="form-control" name="p_pokemon_p_Id">
+        @foreach (var item in Model.pokemons)
+        {
+            <option value="@item.p_Id">@item.p_name</option>
+            }
+    </select>
+    <br />
+    <br />
+    <select style="float:left" class="form-control" name="a_ability_a_Id">
+        @foreach (var item in Model.abilities)
+        {
+            <option value="@item.a_Id">@item.a_name</option>
+        }
+    </select>
+    <br />
+    <br />
+    <select style="float:left" class="form-control" name="n_natures_n_Id">
+        @foreach (var nat in Model.natures)
+        {
+            <option value="@nat.n_Id">
+                @nat.n_name (+@nat.n_statBuffed;-@nat.n_statNerfed)
+            </option>
+        }
+    </select>
+    <br />
+    <br />
+    <select style="float:left" class="form-control" name="i_item_i_Id">
+        @foreach (var item in Model.items)
+        {
+            <option value="@item.i_Id">
+                @item.i_name
+            </option>
+        }
+    </select>
+    <br />
+    <br />
+    <br />
+    <input type="hidden" value="@ViewBag.teamID" name="te_team_te_Id" />
+    <input style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" name="tp_evHP" placeholder="EV HP" />
+    <input style="width:4vw" type="number" step="1" min="0" max="31" name="tp_dvHP" placeholder="DV HP" />
+    <br />
+    <input style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" name="tp_evAtk" placeholder="EV Atk" />
+    <input style="width:4vw" type="number" step="1" min="0" max="31" name="tp_dvAtk" placeholder="DV Atk" />
+    <br />
+    <input style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" name="tp_evDef" placeholder="EV Def" />
+    <input style="width:4vw" type="number" step="1" min="0" max="31" name="tp_dvDef" placeholder="DV Def" />
+    <br />
+    <input style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" name="tp_evSpA" placeholder="EV SpA" />
+    <input style="width:4vw" type="number" step="1" min="0" max="31" name="tp_dvSpA" placeholder="DV SpA" />
+    <br />
+    <input style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" name="tp_evSpD" placeholder="EV SpD" />
+    <input style="width:4vw" type="number" step="1" min="0" max="31" name="tp_dvSpD" placeholder="DV SpD" />
+    <br />
+    <input style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" name="tp_evSpe" placeholder="EV Spe" />
+    <input style="width:4vw" type="number" step="1" min="0" max="31" name="tp_dvSpe" placeholder="DV Spe" />
+    <br />
+
+
+
+
+    <input style="margin-left:20vw" id="add" value="Add" type="submit" />
+}

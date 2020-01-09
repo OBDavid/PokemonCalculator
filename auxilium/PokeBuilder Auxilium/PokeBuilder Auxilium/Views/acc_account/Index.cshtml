@@ -1,0 +1,70 @@
+﻿@model IEnumerable<PokeBuilder_Auxilium.Models.acc_account>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <a>Name</a>
+    <input name="lname" />
+    <a>Mail</a>
+    <input type="email" name="mail" />
+    <a>Password</a>
+    <input type="password" name="pw"/>
+    <input type="submit" />
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th >
+                Mail
+                </th>
+            <th>
+                Password
+            </th>
+            <th>
+
+            </th>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+        <tr>
+            <td>
+                @b.acc_Name
+            </td>
+            <td>
+                @b.acc_mail
+            </td>
+            <td>
+                @if (b.acc_mail.Equals(User.Identity.Name))
+                {           
+                        <p title="@b.acc_password">
+                            @for (int i = 0; i < b.acc_password.Length; i++)
+                            {
+                                <span>*</span>
+                            }
+                        </p>
+                }
+                else
+                {
+                    <p>
+                            @for (int i = 0; i < b.acc_password.Length; i++)
+                            {
+                                <span>*</span>
+                            }
+                        </p>
+                }
+                    </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id =  b.acc_mail.Replace('.','!')})
+            </td>
+        </tr>
+           }
+    </tbody>
+    </table>

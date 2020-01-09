@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Calculator</title>
+
+    <link rel="icon" type="image/gif" href="~/img/GreatBall.png">
+
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/script.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div>
+            <a id="first" href="~/">
+                <img src="~/img/logo.svg" class="logo" />
+            </a>
+        </div>
+        <br />
+        <div id="act1">
+            @*Verlinkung zur Startseite*@
+            @Html.ActionLink("Calculator", "", "Home")
+        </div>
+        <div id="act2">
+            @*Verlinkung zu den Teams (für später)*@
+            @Html.ActionLink("Teams", "Teams", "Home")
+        </div>
+        <div id="act3">
+            @*Verlinkung zur Liste aller Pokemon*@
+            @Html.ActionLink("Pokedex", "Index", "Pokedex")
+        </div>
+    </nav>
+
+   
+    <div id="LoginLoader">
+        @Html.Partial("~/Views/Account/_LoginMenu.cshtml",false)
+    </div>
+
+
+    <div class="content">
+        @*Rest der Seite wird hier eingefügt beispielsweise Startseite*@
+        @RenderBody()
+        <footer style="position:fixed;left:1.5vw;bottom:1vh">
+            <p style="color:lightslategrey">@DateTime.Now.Year - Pokemon Calculator</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

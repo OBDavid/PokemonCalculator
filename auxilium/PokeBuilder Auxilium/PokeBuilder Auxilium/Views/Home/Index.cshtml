@@ -1,0 +1,141 @@
+﻿<script type="text/javascript" src="~/Scripts/PokemonCalculator.js"></script>
+@{
+    ViewBag.Title = "CALC";
+}
+
+<br />
+<h5>
+    Calculator
+</h5>
+<table style="width:100%">
+    <tbody>
+        <tr>
+            <td width="60%">
+                <p>
+                    <a>Attacker:</a>
+                    <br />
+
+                    <input onchange="calc()" type="number" style="height:2.2vh;width:2.5vw" step="1" min="0" max="100" id="lvl" placeholder="Lvl" />
+                    <select class="CalcList" onchange="pokemonChange()" id="Pokemon"></select>
+                    <select onchange="calc()" class="CalcList" id="Item"></select>
+                    <select onchange="calc()" class="CalcList" id="Nature"></select>
+                    <select onchange="calc()" class="CalcList" id="Ability"></select>
+                </p>
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="EvHP" placeholder="EV HP" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DvHP" placeholder="DV HP" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="EvAtk" placeholder="EV Atk" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DvAtk" placeholder="DV Atk" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="EvDef" placeholder="EV Def" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DvDef" placeholder="DV Def" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="EvSpA" placeholder="EV SpA" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DvSpA" placeholder="DV SpA" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="EvSpD" placeholder="EV SpD" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DvSpD" placeholder="DV SpD" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="EvSpe" placeholder="EV Spe" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DvSpe" placeholder="DV Spe" />
+                <br />
+
+                <div style="margin-left:60%">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <p style="display:inline" class="add">
+                        <a>Move: </a>
+                        <select onchange="calc()" id="Move"></select>
+                    </p>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </td>
+            <td width="40%" id="conditions">
+                <h4>Battle Conditions</h4>
+                <br />
+                <input onchange="calc()" type="radio" id="rain" name="weather" />
+                <label>None &nbsp </label>
+                <input onchange="calc()" type="radio" id="rain" name="weather" />
+                <label>Rain &nbsp </label>
+                <input onchange="calc()" type="radio" id="sun" name="weather" />
+                <label>Sun &nbsp </label>
+                <input onchange="calc()" type="radio" name="weather" />
+                <label>Sandstorm &nbsp </label>
+                <input onchange="calc()" type="radio" name="weather" />
+                <label>Hail</label>
+                <br />
+                <input onchange="calc()" id="lightscreen" type="checkbox" />
+                <label>&nbsp Light Screen &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</label>
+                <input onchange="calc()" id="reflector" type="checkbox" />
+                <label>&nbsp Reflector</label>
+                <br />
+                <label>Spikes: &nbsp &nbsp &nbsp  </label>
+                <label>0</label>
+                <input onchange="calc()" type="radio" name="spikes" />
+                <label>&nbsp 1</label>
+                <input onchange="calc()" type="radio" id="spike1" name="spikes" />
+                <label>&nbsp 2</label>
+                <input onchange="calc()" type="radio" id="spike2" name="spikes" />
+                <label>&nbsp 3</label>
+                <input onchange="calc()" type="radio" id="spike3" name="spikes" />
+                <br />
+                <input onchange="calc()" type="checkbox" id="Stealth" />
+                <label>&nbsp Stealth Rocks &nbsp &nbsp &nbsp &nbsp </label>
+                <input onchange="calc()" type="checkbox" id="double" />
+                <label>&nbsp Double Battle</label>
+                <br />
+                <input onchange="calc()" id="burn" type="checkbox" />
+                <label>&nbsp Burned</label>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    <a>Defender:</a>
+                    <br />
+
+                    <input onchange="calc()" type="number" style="height:2.2vh;width:2.5vw" step="1" min="0" max="100" id="Dlvl" placeholder="Lvl" />
+                    <select class="CalcList" onchange="pokemonDefChange()" id="PokemonDef"></select>
+                    <select onchange="calc()" class="CalcList" id="ItemDef"></select>
+                    <select onchange="calc()" class="CalcList" id="NatureDef"></select>
+                    <select onchange="calc()" class="CalcList" id="AbilityDef"></select>
+                </p>
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="DEvHP" placeholder="EV HP" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DDvHP" placeholder="DV HP" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="DEvAtk" placeholder="EV Atk" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DDvAtk" placeholder="DV Atk" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="DEvDef" placeholder="EV Def" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DDvDef" placeholder="DV Def" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="DEvSpA" placeholder="EV SpA" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DDvSpA" placeholder="DV SpA" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="DEvSpD" placeholder="EV SpD" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DDvSpD" placeholder="DV SpD" />
+                <br />
+                <input onchange="calc()" style="margin-left:3.5vw;width:4vw" type="number" step="1" min="0" max="255" id="DEvSpe" placeholder="EV Spe" />
+                <input onchange="calc()" style="width:4vw" type="number" step="1" min="0" max="31" id="DDvSpe" placeholder="DV Spe" />
+            </td>
+            <td>
+                <h6>Result</h6>
+
+                <div style="font-size:1vw;padding-right:2vw" id="result">
+
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

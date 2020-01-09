@@ -1,0 +1,191 @@
+﻿@model PokeBuilder_Auxilium.Models.tp_teampokemon
+
+@{ 
+
+    double natatk = 1;
+    double natdef = 1;
+    double natspa = 1;
+    double natspd = 1;
+    double natspe = 1;
+    switch (Model.n_nature.n_statBuffed)
+    {
+        case "Atk":
+            natatk = natatk+0.1;
+            break;
+        case "Def":
+            natdef = natdef + 0.1;
+            break;
+        case "SpA":
+            natspa = natspa + 0.1;
+            break;
+        case "SpD":
+            natspd = natspd + 0.1;
+            break;
+        case "Spe":
+            natspe = natspe + 0.1;
+            break;
+    }
+    switch (Model.n_nature.n_statNerfed)
+    {
+        case "Atk":
+            natatk = natatk - 0.1;
+            break;
+        case "Def":
+            natdef = natdef - 0.1;
+            break;
+        case "SpA":
+            natspa = natspa - 0.1;
+            break;
+        case "SpD":
+            natspd = natspd - 0.1;
+            break;
+        case "Spe":
+            natspe = natspe - 0.1;
+            break;
+    }
+
+    int hp = Model.p_pokemon.s_stat.Where(a => a.s_stat1 == 1).FirstOrDefault()?.s_value ?? 0;
+    int hpCalc = (int)((((2 * (double)hp + ((double)(Model.tp_dvHP ?? 0) + ((double)(Model.tp_evHP ?? 0) / 4.0))) * (double)(Model.tp_Level ?? 50.0))/100) + (double)(Model.tp_Level ?? 50.0) + 10.0);
+    int hpCalcAlt = (int)(((2.0 * (double)hp + (double)(Model.tp_dvHP ?? 0) + ((double)(Model.tp_evHP ?? 0) / 4.0)) * (double)(Model.tp_Level ?? 50.0)) / 100.0 + 5.0);
+
+    int atk = Model.p_pokemon.s_stat.Where(a => a.s_stat1 == 2).FirstOrDefault()?.s_value ?? 0;
+    int atkCalc = (int)((((2.0 * (double)atk + (double)(Model.tp_dvAtk ?? 0) + ((double)(Model.tp_evAtk ?? 0) / 4.0)) * (double)(Model.tp_Level ?? 50.0)) / 100.0 + 5.0) * natatk);
+
+    int def = Model.p_pokemon.s_stat.Where(a => a.s_stat1 == 3).FirstOrDefault()?.s_value ?? 0;
+    int defCalc = (int)((((2.0 * (double)def + (double)(Model.tp_dvAtk ?? 0) + ((double)(Model.tp_evAtk ?? 0) / 4.0)) * (double)(Model.tp_Level ?? 50.0)) / 100.0 + 5.0) * natdef);
+
+    int spa = Model.p_pokemon.s_stat.Where(a => a.s_stat1 == 4).FirstOrDefault()?.s_value ?? 0;
+    int spaCalc = (int)((((2.0 * (double)spa + (double)(Model.tp_dvAtk ?? 0) + ((double)(Model.tp_evAtk ?? 0) / 4.0)) * (double)(Model.tp_Level ?? 50.0)) / 100.0 + 5.0) * natspa);
+
+    int spd = Model.p_pokemon.s_stat.Where(a => a.s_stat1 == 5).FirstOrDefault()?.s_value ?? 0;
+    int spdCalc = (int)((((2.0 * (double)spd + (double)(Model.tp_dvAtk ?? 0) + ((double)(Model.tp_evAtk ?? 0) / 4.0)) * (double)(Model.tp_Level ?? 50.0)) / 100.0 + 5.0) * natspd);
+
+    int spe = Model.p_pokemon.s_stat.Where(a => a.s_stat1 == 6).FirstOrDefault()?.s_value ?? 0;
+    int speCalc = (int)((((2.0 * (double)spe + (double)(Model.tp_dvAtk ?? 0) + ((double)(Model.tp_evAtk ?? 0) / 4.0)) * (double)(Model.tp_Level ?? 50.0)) / 100.0 + 5.0) * natspe);
+
+    int max = hp;
+    if (max < atk)
+    {
+        max = atk;
+    }
+    if (max < def)
+    {
+        max = def;
+    }
+    if (max < spa)
+    {
+        max = spa;
+    }
+    if (max < spd)
+    {
+        max = spd;
+    }
+    if (max < spe)
+    {
+        max = spe;
+    }
+
+    int max2 = hpCalcAlt;
+    if (max2 < atkCalc)
+    {
+        max2 = atkCalc;
+    }
+    if (max2 < defCalc)
+    {
+        max2 = defCalc;
+    }
+    if (max2 < spaCalc)
+    {
+        max2 = spaCalc;
+    }
+    if (max2 < spdCalc)
+    {
+        max2 = spdCalc;
+    }
+    if (max2 < speCalc)
+    {
+        max2 = speCalc;
+    }
+
+    int hpRatio = (int)(80.0 * (double)hp / (double)max);
+    int atkRatio = (int)(80.0 *(double)atk / (double)max);
+    int defRatio = (int)(80.0 *(double)def / (double)max);
+    int spaRatio = (int)(80.0 *(double)spa / (double)max);
+    int spdRatio = (int)(80.0 *(double)spd / (double)max);
+    int speRatio = (int)(80.0 *(double)spe / (double)max);
+
+    int hpCalcRatio = (int)(80.0 * (double)hpCalcAlt / (double)max2);
+    int atkCalcRatio = (int)(80.0 * (double)atkCalc / (double)max2);
+    int defCalcRatio = (int)(80.0 * (double)defCalc / (double)max2);
+    int spaCalcRatio = (int)(80.0 * (double)spaCalc / (double)max2);
+    int spdCalcRatio = (int)(80.0 * (double)spdCalc / (double)max2);
+    int speCalcRatio = (int)(80.0 * (double)speCalc / (double)max2);
+
+    }
+    
+            <tr >
+                <td style="font-size:0.8vw">
+                    Health Points
+                </td>
+                <td>
+                    <div style="background-color: red; font-size: 0.6vw; width: @hpRatio%; line-height: 1.5vh; border: 1px solid black;">@hp</div>
+                </td>
+                <td>
+                    <div style="background-color: red; font-size: 0.6vw; width: @hpCalcRatio%; line-height: 1.5vh; border: 1px solid black;">@hpCalc</div>
+                </td>
+            </tr>
+            <tr >
+                <td style="font-size:0.8vw">
+                    Attack
+                </td>
+                <td>
+                    <div style="background-color: rgb(240,128,48); font-size: 0.6vw; width: @atkRatio%; line-height: 1.5vh; border: 1px solid black;">@atk</div>
+                </td>
+                <td>
+                    <div style="background-color: rgb(240, 128, 48); font-size: 0.6vw; width: @atkCalcRatio%; line-height: 1.5vh; border: 1px solid black;">@atkCalc</div>
+                </td>
+            </tr>
+            <tr >
+                <td style="font-size:0.8vw">
+                    Defense
+                </td>
+                <td>
+                    <div style="background-color: rgb(248,208,48); font-size: 0.6vw; width: @defRatio%; line-height: 1.5vh; border: 1px solid black;">@def</div>
+                </td>
+                <td>
+                    <div style="background-color: rgb(248, 208, 48); font-size: 0.6vw; width: @defCalcRatio%; line-height: 1.5vh; border: 1px solid black;">@defCalc</div>
+                </td>
+            </tr>
+            <tr >
+                <td style="font-size:0.8vw">
+                    Special-Attack
+                </td>
+                <td>
+                    <div style="background-color: rgb(104,144,240); font-size: 0.6vw; width: @spaRatio%; line-height: 1.5vh; border: 1px solid black;">@spa</div>
+                </td>
+                <td>
+                    <div  style="background-color: rgb(104, 144, 240);font-size: 0.6vw; width: @spaCalcRatio%; line-height: 1.5vh; border: 1px solid black;">@spaCalc</div>
+                </td>
+            </tr>
+            <tr >
+                <td style="font-size:0.8vw">
+                    Special Defense
+                </td>
+                <td>
+                    <div style="background-color: rgb(120,200,80); font-size: 0.6vw; width: @spdRatio%; line-height: 1.5vh; border: 1px solid black;">@spd</div>
+                </td>
+                <td>
+                    <div style="background-color: rgb(120, 200, 80); font-size: 0.6vw; width: @spdCalcRatio%; line-height: 1.5vh; border: 1px solid black;">@spdCalc</div>
+                </td>
+            </tr>
+            <tr >
+                <td style="font-size:0.8vw">
+                    Speed
+                </td>
+                <td>
+                    <div style="background-color: rgb(248,88,136); font-size: 0.6vw; width: @speRatio%; line-height: 1.5vh; border: 1px solid black;">@spe</div>
+                </td>
+                <td>
+                    <div style="background-color: rgb(248, 88, 136); font-size: 0.6vw; width: @speCalcRatio%; line-height: 1.5vh; border: 1px solid black;">@speCalc</div>
+                </td>
+            </tr>

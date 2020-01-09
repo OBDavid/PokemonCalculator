@@ -1,0 +1,54 @@
+﻿@model PokeBuilder_Auxilium.Models.acc_account
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Are you sure you want to delete @Model.acc_Name?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.acc_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acc_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.acc_password)
+        </dt>
+
+        <dd>
+            @if (Model.acc_mail.Equals(User.Identity.Name))
+                {           
+                        <p title="@Model.acc_password">
+                            @for (int i = 0; i <Model.acc_password.Length; i++)
+                            {
+                                <span>*</span>
+                            }
+                        </p>
+                }
+                else
+                {
+                    <p>
+                            @for (int i = 0; i < Model.acc_password.Length; i++)
+                            {
+                                <span>*</span>
+                            }
+                        </p>
+                }
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

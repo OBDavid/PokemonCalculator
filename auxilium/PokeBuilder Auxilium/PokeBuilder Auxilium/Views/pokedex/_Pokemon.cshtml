@@ -1,0 +1,133 @@
+﻿@model IEnumerable<PokeBuilder_Auxilium.Models.p_pokemon>
+
+@*Nur Wenn eine Liste vorhanden ist*@
+@if (Model.Count() != 0)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*Wenn die ID über 10000 ist, ist das Pokemon nicht mehr im Pokedex wird aber trotzdem mit "No Entry" angezeigt*@
+                @if (item.p_Id > 10000)
+                {
+                    <span style="color:#BC0807">No Entry</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.p_Id)
+                }
+            </td>
+            <td>
+                @*UpperCased den ersten Buchstaben*@
+                @item.p_name.ToUpper().First()@item.p_name.Remove(0, 1)
+            </td>
+            <td>
+                @*Ersetzt die jeweiligen Typen des Pokemons mit den dazugehörigen Bildern*@
+                @foreach (var p in item.t_type)
+                {
+                    switch (p.t_Id)
+                    {
+                        case 1:
+                            <img style="height:2.2vh" src="~/img/TypeNormal.png" />
+                            break;
+                        case 2:
+                            <img style="height:2.2vh" src="~/img/TypeFighting.png" />
+                            break;
+                        case 3:
+                            <img style="height:2.2vh" src="~/img/TypeFlying.png" />
+                            break;
+                        case 4:
+                            <img style="height:2.2vh" src="~/img/TypePoison.png" />
+                            break;
+                        case 5:
+                            <img style="height:2.2vh" src="~/img/TypeGround.png" />
+                            break;
+                        case 6:
+                            <img style="height:2.2vh" src="~/img/TypeRock.png" />
+                            break;
+                        case 7:
+                            <img style="height:2.2vh" src="~/img/TypeBug.png" />
+                            break;
+                        case 8:
+                            <img style="height:2.2vh" src="~/img/TypeGhost.png" />
+                            break;
+                        case 9:
+                            <img style="height:2.2vh" src="~/img/TypeSteel.png" />
+                            break;
+                        case 10:
+                            <img style="height:2.2vh" src="~/img/TypeFire.png" />
+                            break;
+                        case 11:
+                            <img style="height:2.2vh" src="~/img/TypeWater.png" />
+                            break;
+                        case 12:
+                            <img style="height:2.2vh" src="~/img/TypeGrass.png" />
+                            break;
+                        case 13:
+                            <img style="height:2.2vh" src="~/img/TypeElectric.png" />
+                            break;
+                        case 14:
+                            <img style="height:2.2vh" src="~/img/TypePsychic.png" />
+                            break;
+                        case 15:
+                            <img style="height:2.2vh" src="~/img/TypeIce.png" />
+                            break;
+                        case 16:
+                            <img style="height:2.2vh" src="~/img/TypeDragon.png" />
+                            break;
+                        case 17:
+                            <img style="height:2.2vh" src="~/img/TypeDark.png" />
+                            break;
+                        case 18:
+                            <img style="height:2.2vh" src="~/img/TypeFairy.png" />
+                            break;
+                        default:
+                            @Html.Encode("???")
+                            break;
+                    }
+
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.p_tier)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.p_orderNr)
+            </td>
+            <td>
+                @*Verlinkung zu den Details des jeweiligen Pokemon*@
+                @Html.ActionLink("Details", "ID", new { id = item.p_Id })
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <div style="position:absolute;top:25vh;right:30vw">
+        <h6 style="text-align:center">Try to filter with less</h6>
+        <a href="~/p_pokemon/Details/321">
+        <img onclick="" style="width:30vw" src="~/img/wailord.svg"/>
+            </a>
+            <br />
+            <br />
+        <div style="padding-left:4vw">
+            <br />
+            <span style="font-size:0.8vw">Source:</span>
+            <a style="font-size:0.8vw;" href="https://static.pokebattler.com/pokemon/wailord.svg" target="_blank">https://static.pokebattler.com/pokemon/wailord.svg</a>
+        </div>
+    </div>
+}
+    <script>
+        @*Updated die Ajax Header nach jedem Ajax Aufruf*@
+    $(document).ready(function () {
+        document.getElementById("OrderByID").href = "/Pokedex/Filter?filter=@ViewBag.filter";
+        document.getElementById("OrderByName").href = "/Pokedex/Filter?filter=@ViewBag.filter&sort=OrderByName";
+        document.getElementById("OrderByTier").href = "/Pokedex/Filter?filter=@ViewBag.filter&sort=OrderByTier";
+        document.getElementById("OrderByIntNr").href = "/Pokedex/Filter?filter=@ViewBag.filter&sort=OrderByIntNr";
+        var f = document.getElementById("filterForms");
+        f.action = "/Pokedex/Filter?sort=@ViewBag.sort&last=@ViewBag.filter";
+        })
+        
+    </script>

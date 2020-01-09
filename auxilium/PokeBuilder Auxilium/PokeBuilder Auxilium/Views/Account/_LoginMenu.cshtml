@@ -1,0 +1,87 @@
+﻿@model bool
+
+@using (PokeBuilder_Auxilium.Models.PokeBankEntities db = new PokeBuilder_Auxilium.Models.PokeBankEntities())
+{
+    var cookie = HttpContext.Current.Request.Cookies["LikeCoffeeWithMilk"];
+    string mail=null;
+    string password=null;
+
+    if (cookie != null&&!Model)
+    {
+        mail = cookie.Values.GetValues("mail")?.First();
+        password = cookie.Values.GetValues("password")?.First();
+    }
+    if (mail!=null&&password!=null&&(from a in db.acc_account where a.acc_mail == mail select a).FirstOrDefault()?.acc_password == password)
+    {
+        using (Ajax.BeginForm("LogOut", "Account", new { }, new AjaxOptions
+        {
+            HttpMethod = "POST",
+            UpdateTargetId = "LoginLoader",
+            InsertionMode = InsertionMode.Replace
+        }, new { @id="logoutForm" }))
+        {
+        <ul class="nav navbar-nav navbar-right marginri">
+        <li>
+            @Html.ActionLink((from a in db.acc_account where a.acc_mail==mail select a.acc_Name).First(),
+            "Index", "acc_account", null, htmlAttributes: new { title = "Manage", @class = "hoverlogin" })
+                    
+        </li>
+        <li>
+            <input value="Log Out" type="submit" />
+        </li>
+        </ul>
+        }
+    
+    
+    }
+    else
+    {
+
+    <ul class="nav navbar-nav navbar-right marginri">
+        <li>
+            <a class="nohover" onclick = "switchLogin()"> Log in</a>
+        </li>
+        <li>
+            <a class="nohover" onclick = "switchRegister()"> Register</a>
+        </li>
+    </ul>
+    }
+}
+
+
+<div style="visibility:hidden;position:absolute;right:2%;top:10%;background-color:#DDDDDD90;border-radius:4px;padding-left:2vw;padding-right:2vw" id="loginField">
+    @using (Ajax.BeginForm("Login", "Account", new {  }, new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "LoginLoader",
+        InsertionMode = InsertionMode.Replace
+    }, new { @onsubmit="encryptPasswordAndMail()" }))
+    {
+        <input style="margin-top:2.5vh;" name="mail" id="mailField" type="text" />
+        <br />
+        <input style="margin-top:0.5vh" type="password" name="password" id="passwordField"/>
+        <br />
+        <span style="font-size:10px">Remember me</span>
+        <input style="margin-top:.5vh;" name="rememberMe" type="checkbox" />
+        <input id="LogInButton" style="margin-top:2.5vh;margin-bottom:2.5vh;" value="Login" type="submit" />
+    }
+</div>
+<div style="visibility:hidden;position:absolute;right:2%;top:10%;background-color:#DDDDDD90;border-radius:4px;padding-left:2vw;padding-right:2vw" id="registerField">
+    @using (Ajax.BeginForm("Register", "Account", new { }, new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "LoginLoader",
+        InsertionMode = InsertionMode.Replace
+    }, new { @onsubmit = "encryptPasswordAndMailRegister()" }))
+    {
+        <p style="margin-bottom:0;margin-top:1vh">Name</p>
+        <input name="acc_Name" type="text" />
+        <p style="margin-bottom:0">Mail</p>
+        <input  type="email" id="mailFieldRegister" name="acc_mail" />
+        <p style="margin-bottom:0">Password</p>
+        <input name="acc_password" id="passwordFieldRegister" type="password" />
+        <br />
+        <input style="" id="LogInButton" value="Register" type="submit" />
+    }
+</div>
+

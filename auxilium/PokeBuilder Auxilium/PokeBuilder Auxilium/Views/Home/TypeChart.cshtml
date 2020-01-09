@@ -1,0 +1,80 @@
+﻿@model IEnumerable<PokeBuilder_Auxilium.Models.te_typeEfficiacy>
+
+
+@{
+    ViewBag.Title = "TypeChart";
+    String[] t = { "Normal", "Fighting", "Flying" ,"Poison","Ground","Rock","Bug","Ghost","Steel",
+                    "Fire","Water","Grass","Electric","Psychic","Ice","Dragon","Dark","Fairy"};
+    string url;
+}
+
+<h2>TypeChart</h2>
+
+<br />
+<br />
+<br />
+<table id="typeChart">
+    <thead style="border-bottom:solid;border-bottom-width:0.1vw;border-bottom-color:#BC0807">
+    <tr>
+        <th>
+            verteidigt -->
+        </th>
+        @foreach (string u in t)
+        {
+            url = "/img/type" + @u + ".png";
+            <th>
+            <img style="height:1.3vw" src=@url />
+            </th>
+        }
+    </tr>
+    </thead>
+        <tbody id="typePadding">
+                @for(int i=1;i<=t.Length;i++)
+                {
+                    url="/img/type"+t[i-1]+".png";
+                    string col = "transparent";
+                    if(i%2==0)
+                    {
+                        col = "#EEEEEE";
+                    }
+                <tr>
+                    <td style="background-color:@col">
+                        <img style="height:3vh" src=@url />
+                    </td>
+                    @{
+                        List<PokeBuilder_Auxilium.Models.te_typeEfficiacy> types = (from a in Model where a.t_type_t_IdAt == i select a).ToList();
+                        for (int idx = 1; idx <= types.Count(); idx++)
+                        {
+                            col = "transparent";
+                            if(i%2==0)
+                            {
+                                col = "#EEEEEE";
+                            }
+                            string fontc = "#000000";
+                            double mult = ((double)(from a in types where a.t_type_t_IdDe == idx select a)?.First()?.t_damagePercentage) / 100;
+                            if(mult==2)
+                            {
+                                col = "#00D000";
+                                fontc = "#FFFFFF";
+                            }
+                            else if(mult==0.5)
+                            {
+                                col = "#D00000";
+                                fontc = "#FFFFFF";
+                            }
+
+                        <td style="background-color:@col;">
+                            
+                                <span style="color:@fontc">@mult x</span>                            
+                            
+                        </td>                         
+                        }
+                      }
+                </tr>
+                }
+
+        </tbody>
+</table>
+<script>
+
+</script>

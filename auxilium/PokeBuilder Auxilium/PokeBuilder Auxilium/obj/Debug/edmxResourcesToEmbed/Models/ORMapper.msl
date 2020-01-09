@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PokeBankModelStoreContainer" CdmEntityContainer="PokeBankEntities">
+    <EntitySetMapping Name="a_ability">
+      <EntityTypeMapping TypeName="PokeBankModel.a_ability">
+        <MappingFragment StoreEntitySet="a_ability">
+          <ScalarProperty Name="a_Id" ColumnName="a_Id" />
+          <ScalarProperty Name="a_name" ColumnName="a_name" />
+          <ScalarProperty Name="a_description" ColumnName="a_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="acc_account">
+      <EntityTypeMapping TypeName="PokeBankModel.acc_account">
+        <MappingFragment StoreEntitySet="acc_account">
+          <ScalarProperty Name="acc_Name" ColumnName="acc_Name" />
+          <ScalarProperty Name="acc_mail" ColumnName="acc_mail" />
+          <ScalarProperty Name="acc_password" ColumnName="acc_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dc_damageClass">
+      <EntityTypeMapping TypeName="PokeBankModel.dc_damageClass">
+        <MappingFragment StoreEntitySet="dc_damageClass">
+          <ScalarProperty Name="dc_Id" ColumnName="dc_Id" />
+          <ScalarProperty Name="dc_name" ColumnName="dc_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i_item">
+      <EntityTypeMapping TypeName="PokeBankModel.i_item">
+        <MappingFragment StoreEntitySet="i_item">
+          <ScalarProperty Name="i_Id" ColumnName="i_Id" />
+          <ScalarProperty Name="i_name" ColumnName="i_name" />
+          <ScalarProperty Name="i_important" ColumnName="i_important" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="m_move">
+      <EntityTypeMapping TypeName="PokeBankModel.m_move">
+        <MappingFragment StoreEntitySet="m_move">
+          <ScalarProperty Name="m_Id" ColumnName="m_Id" />
+          <ScalarProperty Name="m_name" ColumnName="m_name" />
+          <ScalarProperty Name="t_type_t_Id" ColumnName="t_type_t_Id" />
+          <ScalarProperty Name="m_power" ColumnName="m_power" />
+          <ScalarProperty Name="m_pp" ColumnName="m_pp" />
+          <ScalarProperty Name="m_accuracy" ColumnName="m_accuracy" />
+          <ScalarProperty Name="m_priority" ColumnName="m_priority" />
+          <ScalarProperty Name="dc_damageClass_dc_Id" ColumnName="dc_damageClass_dc_Id" />
+          <ScalarProperty Name="me_moveEffect_me_Id" ColumnName="me_moveEffect_me_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="me_moveEffect">
+      <EntityTypeMapping TypeName="PokeBankModel.me_moveEffect">
+        <MappingFragment StoreEntitySet="me_moveEffect">
+          <ScalarProperty Name="me_Id" ColumnName="me_Id" />
+          <ScalarProperty Name="me_description" ColumnName="me_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="n_nature">
+      <EntityTypeMapping TypeName="PokeBankModel.n_nature">
+        <MappingFragment StoreEntitySet="n_nature">
+          <ScalarProperty Name="n_Id" ColumnName="n_Id" />
+          <ScalarProperty Name="n_name" ColumnName="n_name" />
+          <ScalarProperty Name="n_statNerfed" ColumnName="n_statNerfed" />
+          <ScalarProperty Name="n_statBuffed" ColumnName="n_statBuffed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="p_pokemon">
+      <EntityTypeMapping TypeName="PokeBankModel.p_pokemon">
+        <MappingFragment StoreEntitySet="p_pokemon">
+          <ScalarProperty Name="p_Id" ColumnName="p_Id" />
+          <ScalarProperty Name="p_name" ColumnName="p_name" />
+          <ScalarProperty Name="p_orderNr" ColumnName="p_orderNr" />
+          <ScalarProperty Name="p_tier" ColumnName="p_tier" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="s_stat">
+      <EntityTypeMapping TypeName="PokeBankModel.s_stat">
+        <MappingFragment StoreEntitySet="s_stat">
+          <ScalarProperty Name="p_pokemon_p_id" ColumnName="p_pokemon_p_id" />
+          <ScalarProperty Name="s_stat1" ColumnName="s_stat" />
+          <ScalarProperty Name="s_value" ColumnName="s_value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_type">
+      <EntityTypeMapping TypeName="PokeBankModel.t_type">
+        <MappingFragment StoreEntitySet="t_type">
+          <ScalarProperty Name="t_Id" ColumnName="t_Id" />
+          <ScalarProperty Name="t_name" ColumnName="t_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="te_team">
+      <EntityTypeMapping TypeName="PokeBankModel.te_team">
+        <MappingFragment StoreEntitySet="te_team">
+          <ScalarProperty Name="te_Id" ColumnName="te_Id" />
+          <ScalarProperty Name="te_name" ColumnName="te_name" />
+          <ScalarProperty Name="acc_account_acc_mail" ColumnName="acc_account_acc_mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="te_typeEfficiacy">
+      <EntityTypeMapping TypeName="PokeBankModel.te_typeEfficiacy">
+        <MappingFragment StoreEntitySet="te_typeEfficiacy">
+          <ScalarProperty Name="t_type_t_IdAt" ColumnName="t_type_t_IdAt" />
+          <ScalarProperty Name="t_type_t_IdDe" ColumnName="t_type_t_IdDe" />
+          <ScalarProperty Name="t_damagePercentage" ColumnName="t_damagePercentage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tp_teampokemon">
+      <EntityTypeMapping TypeName="PokeBankModel.tp_teampokemon">
+        <MappingFragment StoreEntitySet="tp_teampokemon">
+          <ScalarProperty Name="tp_Id" ColumnName="tp_Id" />
+          <ScalarProperty Name="tp_nickname" ColumnName="tp_nickname" />
+          <ScalarProperty Name="p_pokemon_p_Id" ColumnName="p_pokemon_p_Id" />
+          <ScalarProperty Name="a_ability_a_Id" ColumnName="a_ability_a_Id" />
+          <ScalarProperty Name="n_natures_n_Id" ColumnName="n_natures_n_Id" />
+          <ScalarProperty Name="i_item_i_Id" ColumnName="i_item_i_Id" />
+          <ScalarProperty Name="te_team_te_Id" ColumnName="te_team_te_Id" />
+          <ScalarProperty Name="tp_evHP" ColumnName="tp_evHP" />
+          <ScalarProperty Name="tp_dvHP" ColumnName="tp_dvHP" />
+          <ScalarProperty Name="tp_evAtk" ColumnName="tp_evAtk" />
+          <ScalarProperty Name="tp_dvAtk" ColumnName="tp_dvAtk" />
+          <ScalarProperty Name="tp_evSpA" ColumnName="tp_evSpA" />
+          <ScalarProperty Name="tp_dvSpA" ColumnName="tp_dvSpA" />
+          <ScalarProperty Name="tp_evDef" ColumnName="tp_evDef" />
+          <ScalarProperty Name="tp_dvDef" ColumnName="tp_dvDef" />
+          <ScalarProperty Name="tp_evSpD" ColumnName="tp_evSpD" />
+          <ScalarProperty Name="tp_dvSpD" ColumnName="tp_dvSpD" />
+          <ScalarProperty Name="tp_evSpe" ColumnName="tp_evSpe" />
+          <ScalarProperty Name="tp_dvSpe" ColumnName="tp_dvSpe" />
+          <ScalarProperty Name="tp_Level" ColumnName="tp_Level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="a_ability_has_p_pokemon" TypeName="PokeBankModel.a_ability_has_p_pokemon" StoreEntitySet="a_ability_has_p_pokemon">
+      <EndProperty Name="a_ability">
+        <ScalarProperty Name="a_Id" ColumnName="a_ability_a_Id" />
+      </EndProperty>
+      <EndProperty Name="p_pokemon">
+        <ScalarProperty Name="p_Id" ColumnName="p_pokemon_p_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="p_pokemon_has_m_move" TypeName="PokeBankModel.p_pokemon_has_m_move" StoreEntitySet="p_pokemon_has_m_move">
+      <EndProperty Name="m_move">
+        <ScalarProperty Name="m_Id" ColumnName="m_moves_m_Id" />
+      </EndProperty>
+      <EndProperty Name="p_pokemon">
+        <ScalarProperty Name="p_Id" ColumnName="p_pokemon_p_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="p_pokemon_has_t_type" TypeName="PokeBankModel.p_pokemon_has_t_type" StoreEntitySet="p_pokemon_has_t_type">
+      <EndProperty Name="p_pokemon">
+        <ScalarProperty Name="p_Id" ColumnName="p_pokemon_p_Id" />
+      </EndProperty>
+      <EndProperty Name="t_type">
+        <ScalarProperty Name="t_Id" ColumnName="t_type_t_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tp_teampokemon_has_m_move" TypeName="PokeBankModel.tp_teampokemon_has_m_move" StoreEntitySet="tp_teampokemon_has_m_move">
+      <EndProperty Name="m_move">
+        <ScalarProperty Name="m_Id" ColumnName="m_moves_m_Id" />
+      </EndProperty>
+      <EndProperty Name="tp_teampokemon">
+        <ScalarProperty Name="tp_Id" ColumnName="tp_teampokemon_tp_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

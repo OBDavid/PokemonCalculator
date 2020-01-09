@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PokeBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="a_ability">
+    <Key>
+      <PropertyRef Name="a_Id" />
+    </Key>
+    <Property Name="a_Id" Type="Int32" Nullable="false" />
+    <Property Name="a_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="a_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tp_teampokemon" Relationship="Self.fk_tp_teampokemon_a_ability1" FromRole="a_ability" ToRole="tp_teampokemon" />
+    <NavigationProperty Name="p_pokemon" Relationship="Self.a_ability_has_p_pokemon" FromRole="a_ability" ToRole="p_pokemon" />
+  </EntityType>
+  <EntityType Name="acc_account">
+    <Key>
+      <PropertyRef Name="acc_mail" />
+    </Key>
+    <Property Name="acc_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="acc_mail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="acc_password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="te_team" Relationship="Self.fk_te_team_acc_account1" FromRole="acc_account" ToRole="te_team" />
+  </EntityType>
+  <EntityType Name="dc_damageClass">
+    <Key>
+      <PropertyRef Name="dc_Id" />
+    </Key>
+    <Property Name="dc_Id" Type="Int32" Nullable="false" />
+    <Property Name="dc_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="m_move" Relationship="Self.fk_m_moves_dc_damageClass1" FromRole="dc_damageClass" ToRole="m_move" />
+  </EntityType>
+  <EntityType Name="i_item">
+    <Key>
+      <PropertyRef Name="i_Id" />
+    </Key>
+    <Property Name="i_Id" Type="Int32" Nullable="false" />
+    <Property Name="i_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="i_important" Type="Boolean" />
+    <NavigationProperty Name="tp_teampokemon" Relationship="Self.fk_tp_teampokemon_i_item1" FromRole="i_item" ToRole="tp_teampokemon" />
+  </EntityType>
+  <EntityType Name="m_move">
+    <Key>
+      <PropertyRef Name="m_Id" />
+    </Key>
+    <Property Name="m_Id" Type="Int32" Nullable="false" />
+    <Property Name="m_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="t_type_t_Id" Type="Int32" Nullable="false" />
+    <Property Name="m_power" Type="Int32" />
+    <Property Name="m_pp" Type="Int32" />
+    <Property Name="m_accuracy" Type="Int32" />
+    <Property Name="m_priority" Type="Int32" />
+    <Property Name="dc_damageClass_dc_Id" Type="Int32" Nullable="false" />
+    <Property Name="me_moveEffect_me_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="dc_damageClass" Relationship="Self.fk_m_moves_dc_damageClass1" FromRole="m_move" ToRole="dc_damageClass" />
+    <NavigationProperty Name="me_moveEffect" Relationship="Self.fk_m_moves_me_moveEffect1" FromRole="m_move" ToRole="me_moveEffect" />
+    <NavigationProperty Name="t_type" Relationship="Self.fk_m_moves_t_type1" FromRole="m_move" ToRole="t_type" />
+    <NavigationProperty Name="p_pokemon" Relationship="Self.p_pokemon_has_m_move" FromRole="m_move" ToRole="p_pokemon" />
+    <NavigationProperty Name="tp_teampokemon" Relationship="Self.tp_teampokemon_has_m_move" FromRole="m_move" ToRole="tp_teampokemon" />
+  </EntityType>
+  <EntityType Name="me_moveEffect">
+    <Key>
+      <PropertyRef Name="me_Id" />
+    </Key>
+    <Property Name="me_Id" Type="Int32" Nullable="false" />
+    <Property Name="me_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="m_move" Relationship="Self.fk_m_moves_me_moveEffect1" FromRole="me_moveEffect" ToRole="m_move" />
+  </EntityType>
+  <EntityType Name="n_nature">
+    <Key>
+      <PropertyRef Name="n_Id" />
+    </Key>
+    <Property Name="n_Id" Type="Int32" Nullable="false" />
+    <Property Name="n_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="n_statNerfed" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="n_statBuffed" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tp_teampokemon" Relationship="Self.fk_tp_teampokemon_n_natures1" FromRole="n_nature" ToRole="tp_teampokemon" />
+  </EntityType>
+  <EntityType Name="p_pokemon">
+    <Key>
+      <PropertyRef Name="p_Id" />
+    </Key>
+    <Property Name="p_Id" Type="Int32" Nullable="false" />
+    <Property Name="p_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="p_orderNr" Type="Int32" />
+    <Property Name="p_tier" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="s_stat" Relationship="Self.fk_s_stat_p_pokemon" FromRole="p_pokemon" ToRole="s_stat" />
+    <NavigationProperty Name="tp_teampokemon" Relationship="Self.fk_tp_teampokemon_p_pokemon1" FromRole="p_pokemon" ToRole="tp_teampokemon" />
+    <NavigationProperty Name="a_ability" Relationship="Self.a_ability_has_p_pokemon" FromRole="p_pokemon" ToRole="a_ability" />
+    <NavigationProperty Name="m_move" Relationship="Self.p_pokemon_has_m_move" FromRole="p_pokemon" ToRole="m_move" />
+    <NavigationProperty Name="t_type" Relationship="Self.p_pokemon_has_t_type" FromRole="p_pokemon" ToRole="t_type" />
+  </EntityType>
+  <EntityType Name="s_stat">
+    <Key>
+      <PropertyRef Name="p_pokemon_p_id" />
+      <PropertyRef Name="s_stat1" />
+    </Key>
+    <Property Name="p_pokemon_p_id" Type="Int32" Nullable="false" />
+    <Property Name="s_stat1" Type="Int32" Nullable="false" />
+    <Property Name="s_value" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="p_pokemon" Relationship="Self.fk_s_stat_p_pokemon" FromRole="s_stat" ToRole="p_pokemon" />
+  </EntityType>
+  <EntityType Name="t_type">
+    <Key>
+      <PropertyRef Name="t_Id" />
+    </Key>
+    <Property Name="t_Id" Type="Int32" Nullable="false" />
+    <Property Name="t_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="m_move" Relationship="Self.fk_m_moves_t_type1" FromRole="t_type" ToRole="m_move" />
+    <NavigationProperty Name="te_typeEfficiacy" Relationship="Self.fk_te_typeEfficiacy_t_type1" FromRole="t_type" ToRole="te_typeEfficiacy" />
+    <NavigationProperty Name="te_typeEfficiacy1" Relationship="Self.fk_te_typeEfficiacy_t_type2" FromRole="t_type" ToRole="te_typeEfficiacy" />
+    <NavigationProperty Name="p_pokemon" Relationship="Self.p_pokemon_has_t_type" FromRole="t_type" ToRole="p_pokemon" />
+  </EntityType>
+  <EntityType Name="te_team">
+    <Key>
+      <PropertyRef Name="te_Id" />
+    </Key>
+    <Property Name="te_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="te_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="acc_account_acc_mail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="acc_account" Relationship="Self.fk_te_team_acc_account1" FromRole="te_team" ToRole="acc_account" />
+    <NavigationProperty Name="tp_teampokemon" Relationship="Self.fk_tp_teampokemon_te_team1" FromRole="te_team" ToRole="tp_teampokemon" />
+  </EntityType>
+  <EntityType Name="te_typeEfficiacy">
+    <Key>
+      <PropertyRef Name="t_type_t_IdAt" />
+      <PropertyRef Name="t_type_t_IdDe" />
+    </Key>
+    <Property Name="t_type_t_IdAt" Type="Int32" Nullable="false" />
+    <Property Name="t_type_t_IdDe" Type="Int32" Nullable="false" />
+    <Property Name="t_damagePercentage" Type="Int32" />
+    <NavigationProperty Name="t_type" Relationship="Self.fk_te_typeEfficiacy_t_type1" FromRole="te_typeEfficiacy" ToRole="t_type" />
+    <NavigationProperty Name="t_type1" Relationship="Self.fk_te_typeEfficiacy_t_type2" FromRole="te_typeEfficiacy" ToRole="t_type" />
+  </EntityType>
+  <EntityType Name="tp_teampokemon">
+    <Key>
+      <PropertyRef Name="tp_Id" />
+    </Key>
+    <Property Name="tp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tp_nickname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="p_pokemon_p_Id" Type="Int32" Nullable="false" />
+    <Property Name="a_ability_a_Id" Type="Int32" Nullable="false" />
+    <Property Name="n_natures_n_Id" Type="Int32" Nullable="false" />
+    <Property Name="i_item_i_Id" Type="Int32" Nullable="false" />
+    <Property Name="te_team_te_Id" Type="Int32" Nullable="false" />
+    <Property Name="tp_evHP" Type="Int32" />
+    <Property Name="tp_dvHP" Type="Int32" />
+    <Property Name="tp_evAtk" Type="Int32" />
+    <Property Name="tp_dvAtk" Type="Int32" />
+    <Property Name="tp_evSpA" Type="Int32" />
+    <Property Name="tp_dvSpA" Type="Int32" />
+    <Property Name="tp_evDef" Type="Int32" />
+    <Property Name="tp_dvDef" Type="Int32" />
+    <Property Name="tp_evSpD" Type="Int32" />
+    <Property Name="tp_dvSpD" Type="Int32" />
+    <Property Name="tp_evSpe" Type="Int32" />
+    <Property Name="tp_dvSpe" Type="Int32" />
+    <Property Name="tp_Level" Type="Int32" />
+    <NavigationProperty Name="a_ability" Relationship="Self.fk_tp_teampokemon_a_ability1" FromRole="tp_teampokemon" ToRole="a_ability" />
+    <NavigationProperty Name="i_item" Relationship="Self.fk_tp_teampokemon_i_item1" FromRole="tp_teampokemon" ToRole="i_item" />
+    <NavigationProperty Name="n_nature" Relationship="Self.fk_tp_teampokemon_n_natures1" FromRole="tp_teampokemon" ToRole="n_nature" />
+    <NavigationProperty Name="p_pokemon" Relationship="Self.fk_tp_teampokemon_p_pokemon1" FromRole="tp_teampokemon" ToRole="p_pokemon" />
+    <NavigationProperty Name="te_team" Relationship="Self.fk_tp_teampokemon_te_team1" FromRole="tp_teampokemon" ToRole="te_team" />
+    <NavigationProperty Name="m_move" Relationship="Self.tp_teampokemon_has_m_move" FromRole="tp_teampokemon" ToRole="m_move" />
+  </EntityType>
+  <Association Name="fk_tp_teampokemon_a_ability1">
+    <End Role="a_ability" Type="Self.a_ability" Multiplicity="1" />
+    <End Role="tp_teampokemon" Type="Self.tp_teampokemon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="a_ability">
+        <PropertyRef Name="a_Id" />
+      </Principal>
+      <Dependent Role="tp_teampokemon">
+        <PropertyRef Name="a_ability_a_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_te_team_acc_account1">
+    <End Role="acc_account" Type="Self.acc_account" Multiplicity="1" />
+    <End Role="te_team" Type="Self.te_team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="acc_account">
+        <PropertyRef Name="acc_mail" />
+      </Principal>
+      <Dependent Role="te_team">
+        <PropertyRef Name="acc_account_acc_mail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_m_moves_dc_damageClass1">
+    <End Role="dc_damageClass" Type="Self.dc_damageClass" Multiplicity="1" />
+    <End Role="m_move" Type="Self.m_move" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dc_damageClass">
+        <PropertyRef Name="dc_Id" />
+      </Principal>
+      <Dependent Role="m_move">
+        <PropertyRef Name="dc_damageClass_dc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tp_teampokemon_i_item1">
+    <End Role="i_item" Type="Self.i_item" Multiplicity="1" />
+    <End Role="tp_teampokemon" Type="Self.tp_teampokemon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="i_item">
+        <PropertyRef Name="i_Id" />
+      </Principal>
+      <Dependent Role="tp_teampokemon">
+        <PropertyRef Name="i_item_i_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_m_moves_me_moveEffect1">
+    <End Role="me_moveEffect" Type="Self.me_moveEffect" Multiplicity="1" />
+    <End Role="m_move" Type="Self.m_move" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="me_moveEffect">
+        <PropertyRef Name="me_Id" />
+      </Principal>
+      <Dependent Role="m_move">
+        <PropertyRef Name="me_moveEffect_me_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_m_moves_t_type1">
+    <End Role="t_type" Type="Self.t_type" Multiplicity="1" />
+    <End Role="m_move" Type="Self.m_move" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_type">
+        <PropertyRef Name="t_Id" />
+      </Principal>
+      <Dependent Role="m_move">
+        <PropertyRef Name="t_type_t_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tp_teampokemon_n_natures1">
+    <End Role="n_nature" Type="Self.n_nature" Multiplicity="1" />
+    <End Role="tp_teampokemon" Type="Self.tp_teampokemon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="n_nature">
+        <PropertyRef Name="n_Id" />
+      </Principal>
+      <Dependent Role="tp_teampokemon">
+        <PropertyRef Name="n_natures_n_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_s_stat_p_pokemon">
+    <End Role="p_pokemon" Type="Self.p_pokemon" Multiplicity="1" />
+    <End Role="s_stat" Type="Self.s_stat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_pokemon">
+        <PropertyRef Name="p_Id" />
+      </Principal>
+      <Dependent Role="s_stat">
+        <PropertyRef Name="p_pokemon_p_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tp_teampokemon_p_pokemon1">
+    <End Role="p_pokemon" Type="Self.p_pokemon" Multiplicity="1" />
+    <End Role="tp_teampokemon" Type="Self.tp_teampokemon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="p_pokemon">
+        <PropertyRef Name="p_Id" />
+      </Principal>
+      <Dependent Role="tp_teampokemon">
+        <PropertyRef Name="p_pokemon_p_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_te_typeEfficiacy_t_type1">
+    <End Role="t_type" Type="Self.t_type" Multiplicity="1" />
+    <End Role="te_typeEfficiacy" Type="Self.te_typeEfficiacy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_type">
+        <PropertyRef Name="t_Id" />
+      </Principal>
+      <Dependent Role="te_typeEfficiacy">
+        <PropertyRef Name="t_type_t_IdAt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_te_typeEfficiacy_t_type2">
+    <End Role="t_type" Type="Self.t_type" Multiplicity="1" />
+    <End Role="te_typeEfficiacy" Type="Self.te_typeEfficiacy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_type">
+        <PropertyRef Name="t_Id" />
+      </Principal>
+      <Dependent Role="te_typeEfficiacy">
+        <PropertyRef Name="t_type_t_IdDe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tp_teampokemon_te_team1">
+    <End Role="te_team" Type="Self.te_team" Multiplicity="1" />
+    <End Role="tp_teampokemon" Type="Self.tp_teampokemon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="te_team">
+        <PropertyRef Name="te_Id" />
+      </Principal>
+      <Dependent Role="tp_teampokemon">
+        <PropertyRef Name="te_team_te_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="a_ability_has_p_pokemon">
+    <End Role="a_ability" Type="Self.a_ability" Multiplicity="*" />
+    <End Role="p_pokemon" Type="Self.p_pokemon" Multiplicity="*" />
+  </Association>
+  <Association Name="p_pokemon_has_m_move">
+    <End Role="m_move" Type="Self.m_move" Multiplicity="*" />
+    <End Role="p_pokemon" Type="Self.p_pokemon" Multiplicity="*" />
+  </Association>
+  <Association Name="p_pokemon_has_t_type">
+    <End Role="p_pokemon" Type="Self.p_pokemon" Multiplicity="*" />
+    <End Role="t_type" Type="Self.t_type" Multiplicity="*" />
+  </Association>
+  <Association Name="tp_teampokemon_has_m_move">
+    <End Role="m_move" Type="Self.m_move" Multiplicity="*" />
+    <End Role="tp_teampokemon" Type="Self.tp_teampokemon" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="PokeBankEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="a_ability" EntityType="Self.a_ability" />
+    <EntitySet Name="acc_account" EntityType="Self.acc_account" />
+    <EntitySet Name="dc_damageClass" EntityType="Self.dc_damageClass" />
+    <EntitySet Name="i_item" EntityType="Self.i_item" />
+    <EntitySet Name="m_move" EntityType="Self.m_move" />
+    <EntitySet Name="me_moveEffect" EntityType="Self.me_moveEffect" />
+    <EntitySet Name="n_nature" EntityType="Self.n_nature" />
+    <EntitySet Name="p_pokemon" EntityType="Self.p_pokemon" />
+    <EntitySet Name="s_stat" EntityType="Self.s_stat" />
+    <EntitySet Name="t_type" EntityType="Self.t_type" />
+    <EntitySet Name="te_team" EntityType="Self.te_team" />
+    <EntitySet Name="te_typeEfficiacy" EntityType="Self.te_typeEfficiacy" />
+    <EntitySet Name="tp_teampokemon" EntityType="Self.tp_teampokemon" />
+    <AssociationSet Name="fk_tp_teampokemon_a_ability1" Association="Self.fk_tp_teampokemon_a_ability1">
+      <End Role="a_ability" EntitySet="a_ability" />
+      <End Role="tp_teampokemon" EntitySet="tp_teampokemon" />
+    </AssociationSet>
+    <AssociationSet Name="fk_te_team_acc_account1" Association="Self.fk_te_team_acc_account1">
+      <End Role="acc_account" EntitySet="acc_account" />
+      <End Role="te_team" EntitySet="te_team" />
+    </AssociationSet>
+    <AssociationSet Name="fk_m_moves_dc_damageClass1" Association="Self.fk_m_moves_dc_damageClass1">
+      <End Role="dc_damageClass" EntitySet="dc_damageClass" />
+      <End Role="m_move" EntitySet="m_move" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tp_teampokemon_i_item1" Association="Self.fk_tp_teampokemon_i_item1">
+      <End Role="i_item" EntitySet="i_item" />
+      <End Role="tp_teampokemon" EntitySet="tp_teampokemon" />
+    </AssociationSet>
+    <AssociationSet Name="fk_m_moves_me_moveEffect1" Association="Self.fk_m_moves_me_moveEffect1">
+      <End Role="me_moveEffect" EntitySet="me_moveEffect" />
+      <End Role="m_move" EntitySet="m_move" />
+    </AssociationSet>
+    <AssociationSet Name="fk_m_moves_t_type1" Association="Self.fk_m_moves_t_type1">
+      <End Role="t_type" EntitySet="t_type" />
+      <End Role="m_move" EntitySet="m_move" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tp_teampokemon_n_natures1" Association="Self.fk_tp_teampokemon_n_natures1">
+      <End Role="n_nature" EntitySet="n_nature" />
+      <End Role="tp_teampokemon" EntitySet="tp_teampokemon" />
+    </AssociationSet>
+    <AssociationSet Name="fk_s_stat_p_pokemon" Association="Self.fk_s_stat_p_pokemon">
+      <End Role="p_pokemon" EntitySet="p_pokemon" />
+      <End Role="s_stat" EntitySet="s_stat" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tp_teampokemon_p_pokemon1" Association="Self.fk_tp_teampokemon_p_pokemon1">
+      <End Role="p_pokemon" EntitySet="p_pokemon" />
+      <End Role="tp_teampokemon" EntitySet="tp_teampokemon" />
+    </AssociationSet>
+    <AssociationSet Name="fk_te_typeEfficiacy_t_type1" Association="Self.fk_te_typeEfficiacy_t_type1">
+      <End Role="t_type" EntitySet="t_type" />
+      <End Role="te_typeEfficiacy" EntitySet="te_typeEfficiacy" />
+    </AssociationSet>
+    <AssociationSet Name="fk_te_typeEfficiacy_t_type2" Association="Self.fk_te_typeEfficiacy_t_type2">
+      <End Role="t_type" EntitySet="t_type" />
+      <End Role="te_typeEfficiacy" EntitySet="te_typeEfficiacy" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tp_teampokemon_te_team1" Association="Self.fk_tp_teampokemon_te_team1">
+      <End Role="te_team" EntitySet="te_team" />
+      <End Role="tp_teampokemon" EntitySet="tp_teampokemon" />
+    </AssociationSet>
+    <AssociationSet Name="a_ability_has_p_pokemon" Association="Self.a_ability_has_p_pokemon">
+      <End Role="a_ability" EntitySet="a_ability" />
+      <End Role="p_pokemon" EntitySet="p_pokemon" />
+    </AssociationSet>
+    <AssociationSet Name="p_pokemon_has_m_move" Association="Self.p_pokemon_has_m_move">
+      <End Role="m_move" EntitySet="m_move" />
+      <End Role="p_pokemon" EntitySet="p_pokemon" />
+    </AssociationSet>
+    <AssociationSet Name="p_pokemon_has_t_type" Association="Self.p_pokemon_has_t_type">
+      <End Role="p_pokemon" EntitySet="p_pokemon" />
+      <End Role="t_type" EntitySet="t_type" />
+    </AssociationSet>
+    <AssociationSet Name="tp_teampokemon_has_m_move" Association="Self.tp_teampokemon_has_m_move">
+      <End Role="m_move" EntitySet="m_move" />
+      <End Role="tp_teampokemon" EntitySet="tp_teampokemon" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

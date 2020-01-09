@@ -1,0 +1,76 @@
+﻿@model PokeBuilder_Auxilium.Models.AllData.AllDataModel
+<h5>Teams</h5>
+
+@if (Model == null)
+{
+    <br />
+    <h4> Please log in and reload to proceed</h4>
+}
+else
+{
+
+    var cookie = HttpContext.Current.Request.Cookies["LikeCoffeeWithMilk"];
+    string mail = null;
+    if (cookie != null)
+    {
+        mail = cookie.Values["mail"];
+    }
+
+        <div style="margin-bottom:0;visibility:hidden" id="newTeamBox">
+            @using (Ajax.BeginForm("AddTeam", "Home", new { account = mail }, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "teamsBox",
+                InsertionMode = InsertionMode.Replace
+            }, new { }))
+            {
+                <input type="text" name="tname" placeholder="Name of the Team" />
+                <input onclick="openNewTeamBox()" class="add" value="ADD" type="submit" />
+            }
+        </div>
+        <div class="teams" style="margin-top:0;width:95%">
+            <br />
+
+
+
+            <button class="add" onclick="openNewTeamBox()">ADD</button>
+
+
+            <div id="teamsBox" style="display:inline">
+                @Html.Partial("Ajax/_LoadTeam", (from a in Model.teams where a.acc_account.acc_mail == mail select a).ToList())
+            </div>
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <th width="20%">
+
+                        </th>
+                        <th width="80%">
+
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody id="TeampokemonContainer">
+                </tbody>
+            </table>
+
+            
+        </div>
+
+        <script>
+            function openNewTeamBox() {
+                    if (document.getElementById("newTeamBox").style.visibility == "visible") {
+                        document.getElementById("newTeamBox").style.visibility = "hidden";
+                        document.getElementById("add").innerText = "ADD";
+                    }
+                    else {
+                        document.getElementById("newTeamBox").style.visibility = "visible";
+                        document.getElementById("add").innerText = "Close"
+                    }
+                }
+        </script>
+
+
+    }
+
